@@ -34,17 +34,15 @@ def get_messages_from_queue(queue_url):
             for msg in resp['Messages']
         ]
         #
-        #消息不主动删除，由SQS根据时间自动删除，具体保留时间在SQS的控制台设置
-        #保留时间决定统计周期
-        #
-        #resp = sqs_client.delete_message_batch(
-        #    QueueUrl=queue_url, Entries=entries
-        #)
 
-        #if len(resp['Successful']) != len(entries):
-        #    raise RuntimeError(
-        #        f"Failed to delete messages: entries={entries!r} resp={resp!r}"
-        #    )
+        resp = sqs_client.delete_message_batch(
+            QueueUrl=queue_url, Entries=entries
+        )
+
+        if len(resp['Successful']) != len(entries):
+            raise RuntimeError(
+                f"Failed to delete messages: entries={entries!r} resp={resp!r}"
+            )
 
 #统计用户登录失败的次数，返回大于N次失败的用户
 def count_login_failure_times(failure_times):
