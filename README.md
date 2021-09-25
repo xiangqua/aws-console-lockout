@@ -4,9 +4,12 @@
 ## 背景介绍
 您可以在 AWS 账户上设置自定义密码策略，以便指定您的 IAM 用户密码的复杂性要求和强制轮换期。如果未设置自定义密码策略，则 IAM 用户密码必须符合默认 AWS 密码策略。有关更多信息，请参阅自定义密码策略选项。
 但目前在尝试指定的登录失败次数后，您将无法创建“锁定策略”来锁定用户。为了增强安全性，本文将利用Amazon Lambda和Amazon SQS结合Amazon CloudWatch Event自定义密码重试锁定策略以增强AWS IAM 用户安全。
+
 ## 功能简介
 整个架构全部由无服务器服务构建，用到了Amazon Lambda、Amazon SQS、Amazon CloudWatch Event、Amazon SNS服务，一经部署不需要用户维护底层架构。
- 
+
+<img src="https://user-images.githubusercontent.com/75667661/134753446-f8e9e3a9-857b-430b-ad85-2fc04be74239.png" width="700" height="400"/><br/>
+  
 ## 部署步骤说明
 因为AWS海外控制台的默认Amazon CloudWatch Event事件生成在us-east-1，所以所有的服务部署在us-east-1
 
