@@ -61,7 +61,7 @@ PCI-DSS认证条款对需要具备lockout功能的描述：
 
 2.7 完成lambda函数创建
 
-2.8 创建完lambda后，修改lambda绑定role的权限，需要附加读取Amazon SQS消息和IAM服务DeleteLoginProfile的权限
+2.8 创建完lambda后，修改lambda绑定role的权限，需要附加[读取receive_message/删除delete_message_batch]Amazon SQS消息和IAM服务[DeleteLoginProfile]的权限
 
 
 lockout.py
